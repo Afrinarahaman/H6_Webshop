@@ -192,8 +192,12 @@ namespace H5_Webshop.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //, int senderId,  string token
         public async Task<IActionResult> Update([FromRoute] int userId, [FromBody] UserRequest updateUser)
         {
+            //Get senderid's account from db
+            //Verify that they have the permissions 
+
             try
             {
                 UserResponse user = await _userService.Update(userId, updateUser);

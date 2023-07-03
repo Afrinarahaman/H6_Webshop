@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from '../_models/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Role } from '../_models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +46,6 @@ export class AuthService {
     //this.currentUser = this.currentMemberSubject.asObservable();
     this.currentMemberSubject.next(null);
   }
-
-
 
  register(email: string, password: string, firstName: string, LastName: string, address: string, telephone: string) {
     return this.http.post<any>(`${environment.apiUrl}/User/authenticate`, { email, password, firstName, LastName, address, telephone})

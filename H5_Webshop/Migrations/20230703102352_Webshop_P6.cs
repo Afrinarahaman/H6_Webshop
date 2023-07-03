@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace H5_Webshop.Migrations
 {
-    public partial class Webshop : Migration
+    public partial class Webshop_P6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

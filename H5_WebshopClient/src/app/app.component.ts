@@ -6,6 +6,7 @@ import { Category } from './_models/category';
 import { CartService } from './_services/cart.service';
 import { User } from './_models/user';
 import { AuthService } from './_services/auth.service';
+import { Role } from './_models/role';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class AppComponent {
   categories: Category[]=[];
   category:Category = {id: 0, categoryName :""};
   currentUser?: User | null = null;
-
+  allRoles = Role;
  
   categoryId:number = 0;
   public searchTerm:string="";
@@ -28,7 +29,9 @@ export class AppComponent {
   public totalItem : number =this.cartService.getBasket().length;
 
   
+  isAdmin = false;
 
+  
 
   
   constructor(
@@ -42,12 +45,41 @@ export class AppComponent {
 
     this.categoryService.getCategoriesWithoutProducts().subscribe(x => this.categories = x);
     console.log('value received ', );
-    this.authService.currentUser.subscribe(x=> {this.currentUser=x ;
-      this.router.navigate(['/']);})
+    this.authService.currentUser.subscribe(x=> {this.currentUser=x ;this.isAdmin = this.checkIfUserAdmin(x)
+      this.router.navigate(['/']);
+    });
     
 
   }
 
+  adminPanel(){
+
+  }
+
+  public checkIfUserAdmin(user:User | null) {
+    //check role type and return true or false
+    if (user != null) {
+      return user.role == Role.Admin
+    }
+    else 
+    return false;
+  }
+  public checkIfUserNotGuest(user:User | null) {
+    //check role type and return true or false
+    if (user != null) {
+      return user.role == Role.Admin || user.role == Role.Member
+    }
+    else 
+    return false;
+  }
+  public checkIfUserMember(user:User | null) {
+    //check role type and return true or false
+    if (user != null) {
+      return user.role == Role.Member
+    }
+    else 
+    return false;
+  }
   logout() {
     if (confirm('Are you sure you want to log out?')) {
       // ask authentication service to perform logout

@@ -18,6 +18,10 @@
   <a routerLink="/"  *ngIf="currentUser != null" (click)="logout()">Logout</a>
 </li>
 
+<li style="display:inline-block" class="nav-item">
+  <a routerLink="/"  *ngIf="isAdmin" (click)="adminPanel()">adminPanel</a>
+</li>
+
 <li class="nav-item">
   <a routerLink="/login" routerLinkActive="active-link w3-green" *ngIf="currentUser == null">Login</a>
 </li>
