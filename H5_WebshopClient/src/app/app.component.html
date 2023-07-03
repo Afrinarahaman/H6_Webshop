@@ -1,0 +1,53 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+   
+ 
+<ul class="nav nav-tabs" *ngIf="categories.length >0" id="no-bullets">
+  <li><a routerLink="/" routerLinkActive="active-link w3-green" [routerLinkActiveOptions]="{exact:true}">Home</a>
+  </li>
+  <li class="nav-item" *ngFor="let category of categories ">
+    <a routerLinkActive="active-link w3-green" routerLink="/category_products/{{category.id}}">{{category.categoryName}}</a>
+    
+</li>
+<a class="navbar-brand" href="#"> <img src="assets/image/Chicbotique_logo.jpg"></a>
+<li class="nav-item">
+  <a routerLink="/register" routerLinkActive="active-link w3-green" *ngIf="currentUser == null">Register</a>
+</li>
+<li style="display:inline-block" *ngIf="currentUser != null" class="nav-item">
+  <a routerLink="/" (click)="logout()">Logout</a>
+</li>
+
+<li class="nav-item">
+  <a routerLink="/profile" routerLinkActive="active-link w3-green" *ngIf="currentUser == null">Login</a>
+</li>
+<div class="form-group">
+  <input type="text" class="form-control"  placeholder="productTitle">
+</div>
+<span class="fas fa-search search-icon "></span>
+<button routerLink="/cart" class="btn btn-primary">
+  <i style="font-size:25px" class="fas fa-cart-plus"></i>
+  <div style="font-size: 10px;" class="badge bg-warning"> {{totalItem}}</div>
+</button>
+</ul>
+
+</div>
+</nav>
+
+
+
+
+
+
+
+
+<div class="footer bg-dark">
+  <!--fixed-bottom laver footer sticky på bunden -->
+
+  <p>Online Shop &copy;2023. All rights reserved.<br>CVR-1234656</p>
+  <a href="mailto:webshopsupport@abc.com">webshopsupport@abc.com</a>
+
+</div>
+
+
+<router-outlet></router-outlet>

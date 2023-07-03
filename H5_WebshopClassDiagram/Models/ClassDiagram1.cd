@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Has">
+    <Position X="5.175" Y="1.392" Height="0.291" Width="0.7" />
+  </Comment>
+  <Comment CommentText="Makes">
+    <Position X="6.608" Y="3.758" Height="0.291" Width="0.7" />
+  </Comment>
+  <Comment CommentText="Belong to">
+    <Position X="8.042" Y="1.225" Height="0.416" Width="0.967" />
+  </Comment>
+  <Class Name="H5_Webshop.DTOs.Entities.Category">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H5_Webshop.Database.Entities.Order">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAAgAAAAAAAAAABAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="OrderDetails1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="H5_Webshop.Database.Entities.OrderDetails">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAgAAACAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\OrderDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H5_Webshop.DTOs.Entities.Product">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAQAgAkAAAAAAAAAAgAAAABAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H5_Webshop.Database.Entities.User">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAEAAAAAgAAAAAAAACAIAAAAAAAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
