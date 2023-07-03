@@ -10,16 +10,16 @@
     <a routerLinkActive="active-link w3-green" routerLink="/category_products/{{category.id}}">{{category.categoryName}}</a>
     
 </li>
-<a class="navbar-brand" href="#"> <img src="assets/image/Chicbotique_logo.jpg"></a>
+<a class="navbar-brand" href="/frontpage"> <img class="logo rounded-circle" src="assets/image/logo3.png"></a>
 <li class="nav-item">
   <a routerLink="/register" routerLinkActive="active-link w3-green" *ngIf="currentUser == null">Register</a>
 </li>
-<li style="display:inline-block" *ngIf="currentUser != null" class="nav-item">
-  <a routerLink="/" (click)="logout()">Logout</a>
+<li style="display:inline-block" class="nav-item">
+  <a routerLink="/"  *ngIf="currentUser != null" (click)="logout()">Logout</a>
 </li>
 
 <li class="nav-item">
-  <a routerLink="/profile" routerLinkActive="active-link w3-green" *ngIf="currentUser == null">Login</a>
+  <a routerLink="/login" routerLinkActive="active-link w3-green" *ngIf="currentUser == null">Login</a>
 </li>
 <div class="form-group">
   <input type="text" class="form-control"  placeholder="productTitle">
@@ -35,10 +35,9 @@
 </nav>
 
 
-
-
-
-
+<!--<div>
+  <img class="logo d-block rounded-circle" src="assets/image/logo3.png">
+</div>-->
 
 
 <div class="footer bg-dark">

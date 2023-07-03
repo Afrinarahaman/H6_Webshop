@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
 
   public grandTotal: number = 0;
   public cartProducts: CartItem[] = [];  //property
-  public guest: Role.Guest | undefined;
+ 
   constructor(private cartService: CartService, private router: Router,private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -25,29 +25,21 @@ export class CartComponent implements OnInit {
   async createOrder() {
     // let customerId=parseInt(this.authService.currentCustomerValue.id)
  
-
-    if(this.guest)
-      {
-      alert("Do you want to buy products as guest? If yes, then fill up the infrmation, ellers..");
-      this.router.navigate(['guest']);
-      }
     if (this.authService.currentUserValue == null || this.authService.currentUserValue.id == 0) {
-      
-      else if
-
-      alert("Do you have any account? If yes, then Login, otherwise create a new account..");
-      this.router.navigate(['login']);
+    this.router.navigate(['checkOut']);
     }
-    else {
-
-
+    else
+    {
+      
       var result = await this.cartService.addOrder();
       console.log('result', result);
-             this.cartService.clearBasket();    
-           this.router.navigate(['/thankyou/'+result.id]);
+             this.cartService.clearBasket();
            
-
+           this.router.navigate(['/thankyou/']);
+          
+           
     }
+      
 
       }
   public basket = this.cartService.basket;
@@ -59,59 +51,15 @@ export class CartComponent implements OnInit {
 
 
     }
-    // this.cartProducts=this.cartService.getBasket();
-    //   this.grandTotal= this.cartService.getTotalPrice();
-    //   this.cartService.saveBasket();
+   
     window.location.reload();
   }
   emptycart() {
     if (confirm("are u sure to remove?"))
       this.cartService.clearBasket();
-    // this.cartProducts=this.cartService.getBasket();
-    // this.grandTotal= this.cartService.getTotalPrice();
-    // this.cartService.saveBasket();
+   
     window.location.reload();
 
   }
- /* increase(item: CartItem) {
-    let itemId;
-    itemId = this.cartService.basket.findIndex(({ productId }) => productId == item.productId);
-
-
-
-    item.quantity = item.quantity + 1;
-    this.basket[itemId].quantity = item.quantity;
-
-
-    this.cartService.saveBasket4(this.basket);
-    this.cartProducts = this.cartService.getBasket();
-    this.grandTotal = this.cartService.getTotalPrice();
-
-
-
-
-  }
-  decrease(item: CartItem) {
-    if (item.quantity > 1) {
-
-      let itemId;
-      itemId = this.cartService.basket.findIndex(({ productId }) => productId == item.productId);
-
-
-
-      item.quantity = item.quantity - 1;
-      this.basket[itemId].quantity = item.quantity;
-
-
-      this.cartService.saveBasket4(this.basket);
-      this.cartProducts = this.cartService.getBasket();
-      this.grandTotal = this.cartService.getTotalPrice();
-
-    }
-    else {
-      alert("Quantity can not be negative.")
-    }
-    this.cartService.saveBasket();
-  }*/
-
+ 
 }

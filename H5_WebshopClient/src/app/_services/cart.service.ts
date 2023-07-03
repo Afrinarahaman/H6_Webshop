@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 import { CartItem } from '../_models/cartItem';
 import { AuthService } from './auth.service';
 import { Order } from '../_models/order';
 import { OrderService } from './order.service';
+import { User } from '../_models/user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,10 @@ export class CartService {
   private basketName = "WebShopProjectBasket";
   public basket: CartItem[] = [];
   public search = new BehaviorSubject<string>("");
-
-  constructor(private router: Router, private orderService: OrderService, private authService: AuthService) { }
+  id:number=0;
+  userName:any; 
+  user: Observable<User[]> | undefined;
+  constructor(private router: Router, private orderService: OrderService, private authService: AuthService,private userService:UserService) { }
 
   getBasket(): CartItem[] {
     this.basket = JSON.parse(localStorage.getItem(this.basketName) || "[]");
@@ -47,24 +51,34 @@ export class CartService {
   
 
   async addOrder(): Promise<any> {
-    // console.log(localStorage'.getItem("customerId"));
-
-
-    if (this.authService.currentUserValue.id != null && this.authService.currentUserValue.id > 0) {
-
-
+   
+    if (this.authService.currentUserValue != null && this.authService.currentUserValue.id > 0) {
 
       let orderitem: Order = {           // this is an object which stores customer_id, all of the ordereditems details and date when these have been ordered
         userId: this.authService.currentUserValue.id,
         orderDetails: this.basket,
 
       }
+      var result = await firstValueFrom(this.orderService.storeOrder(orderitem));//calling storeCartItem function for storing all of the ordereditems deatils into the database.
+      return result;
+      
+    } else {
+      this.userName = sessionStorage.getItem('guestuserName');
+    
+    var user=  await firstValueFrom(this.userService.getUserbyUserName(this.userName))
+    this.id=user.id;
+
+      let orderitem: Order = {           // this is an object which stores customer_id, all of the ordereditems details and date when these have been ordered
+        
+        userId: this.id,
+        orderDetails: this.basket,
+
+      }
+    
       var result = await firstValueFrom(this.orderService.storeOrder(orderitem));
       return result;
-      //calling storeCartItem function for storing all of the ordereditems deatils into the database. 
-      // this.orderService.storeOrder(orderitem);//.subscribe(x => console.log(x));  //calling storeCartItem function for storing all of the ordereditems deatils into the database. 
-    } else {
-      return null;
+    
+    
     }
     // else {
     //   console.log('null');

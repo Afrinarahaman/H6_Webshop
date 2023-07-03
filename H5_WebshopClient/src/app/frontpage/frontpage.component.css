@@ -1,0 +1,14 @@
+.list{
+    margin-top: 50px;
+}
+    
+.img-list{
+    height: 150px;
+}
+    
+    
+.card{
+    max-width: 300px;
+    max-height: 450px;
+    margin: 0px 30px 40px 30px;
+}

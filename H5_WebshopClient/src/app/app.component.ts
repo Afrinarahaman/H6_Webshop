@@ -19,7 +19,7 @@ export class AppComponent {
   title = 'Webshop_H5-Client';
   categories: Category[]=[];
   category:Category = {id: 0, categoryName :""};
-  currentUser: User = { id: 0, email: '', password: '', firstName: '', lastName: '', address: '', telephone: ''};
+  currentUser?: User | null = null;
 
  
   categoryId:number = 0;
@@ -42,6 +42,8 @@ export class AppComponent {
 
     this.categoryService.getCategoriesWithoutProducts().subscribe(x => this.categories = x);
     console.log('value received ', );
+    this.authService.currentUser.subscribe(x=> {this.currentUser=x ;
+      this.router.navigate(['/']);})
     
 
   }
@@ -53,10 +55,7 @@ export class AppComponent {
       
 
       // subscribe to the changes in currentUser, and load Home component
-      this.authService.currentUser.subscribe(x => {
-        this.currentUser = x
-        this.router.navigate(['/']);
-      });
+      
     }
   }
 

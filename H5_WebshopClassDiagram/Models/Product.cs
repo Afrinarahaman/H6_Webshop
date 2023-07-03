@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace H5_Webshop.DTOs.Entities
 {
-    public class Product : Database.Entities.OrderDetails
+    public class Product
     {
         [Key]
         public int ProductId { get; set; }

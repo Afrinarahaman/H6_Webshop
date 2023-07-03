@@ -27,16 +27,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   login(): void {
     this.error = '';
     this.authService.login(this.email, this.password)
       .subscribe({
         next: () => {
           // // get return url from route parameters or default to '/'
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          const returnUrl =  '/';
           
           
-          this.router.navigate(['returnUrl']);
+          this.router.navigate(['/']);
         
         },
         error: obj => {

@@ -1,19 +1,39 @@
-<!DOCTYPE html>
-<html>
+<!--<div>
 
-
-<div class="container">
-    <div class="row">
-        <ng-container *ngFor="let item of products   "     >
-            <div class="card col-md-3">
-                <a routerLink="/product_details/{{item.id}}">
-                    <img src="/assets/image/{{item.image}}" alt="picture of products"></a>
-                <h5 style="white-space: nowrap;overflow: hidden;text-overflow:ellipsis;max-width: 100ch;">
-                    {{item.title}}</h5>
-            </div>
-        </ng-container>
-    </div>
-
-
+    <img src="assets/image/bg1.PNG" class="bg d-block w-100 img-thumbnail" alt="">
+    
 </div>
 
+<div class="list row justify-content-center d-flex">
+    <div class="col-ms-6" *ngFor="let item of products">
+        <div class="card border-dark">
+            <img src="/assets/image/{{item.image}}" alt="picture of products" class="img-fluid rounded-start">
+            <div class="card-body">
+                <h5 style="white-space: nowrap;overflow: hidden;text-overflow:ellipsis;max-width: 100ch;">
+                {{item.title}}</h5>
+            </div>
+            <div class="card-footer">
+                <a routerLink="/product_details/{{item.id}}" class="btn d-flex">View</a>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+<div>
+    <img src="assets/image/bg1.PNG" class="bg d-block w-100 img-thumbnail" alt="">
+</div>
+
+<div class="list row justify-content-center d-flex">
+    <div class="card border-dark" *ngFor="let item of products">
+        <img src="/assets/image/{{item.image}}" class="justify-content-center d-flex rounded-start" alt="...">
+    
+        <div class="card-body">
+            <h5 class="text-center">{{item.title}}</h5>
+        </div>
+    
+        <div class="card-footer bg-transparent">
+            <a class="btn d-block bg-dark text-light" routerLink="/product_details/{{item.id}}">View Detail</a>
+        </div>
+    </div>
+</div>

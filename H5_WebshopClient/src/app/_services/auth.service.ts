@@ -7,19 +7,20 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService { private currentMemberSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+export class AuthService { 
+  private currentMemberSubject: BehaviorSubject<User|null>;
+  public currentUser: Observable<User|null>;
 
   constructor(private http: HttpClient) {
     // fake login durring testing
     // if (sessionStorage.getItem('currentUser') == null) {
     //   sessionStorage.setItem('currentUser', JSON.stringify({ id: 0, email: '', customername: '', role: null }));
     // }
-    this.currentMemberSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('currentMember') as string));
+    this.currentMemberSubject = new BehaviorSubject<User|null>(JSON.parse(sessionStorage.getItem('currentMember') as string));
     this.currentUser = this.currentMemberSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
+  public get currentUserValue(): User|null {
     return this.currentMemberSubject.value;
   }
 
@@ -39,9 +40,10 @@ export class AuthService { private currentMemberSubject: BehaviorSubject<User>;
     // remove customer from local storage to log customer out
     sessionStorage.removeItem('currentMember');
     // reset CurrentUserSubject, by fetching the value in sessionStorage, which is null at this point
-    this.currentMemberSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('currentMember') as string));
+    //this.currentMemberSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('currentMember') as string));
     // reset CurrentUser to the resat UserSubject, as an obserable
-    this.currentUser = this.currentMemberSubject.asObservable();
+    //this.currentUser = this.currentMemberSubject.asObservable();
+    this.currentMemberSubject.next(null);
   }
 
 

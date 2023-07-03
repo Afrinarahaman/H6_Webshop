@@ -10,6 +10,7 @@ namespace H5_Webshop.Services
         Task<List<UserResponse>> GetAll();
         // Task<List<UserResponse>> GetAdmins();
         Task<UserResponse> GetById(int UserId);
+        Task<UserResponse> GetIdByUserName(string user_Name);
         Task<LoginResponse> Authenticate(LoginRequest login);
         Task<UserResponse> Register(UserRequest newUser);
         Task<GuestResponse> Register_Guest(GuestRequest newUser);
@@ -63,7 +64,6 @@ namespace H5_Webshop.Services
             {
 
                 FirstName = newuser.FirstName,
-                
                 LastName = newuser.LastName,
                 Address = newuser.Address,
                 Telephone = newuser.Telephone,
@@ -88,6 +88,17 @@ namespace H5_Webshop.Services
             }
             return null;
         }
+        public async Task<UserResponse> GetIdByUserName(string user_Name)
+        {
+            User User = await _userRepository.GetIdByUserName(user_Name);
+
+            if (User != null)
+            {
+
+                return MapUserToUserResponse(User); 
+            }
+            return null;
+        }
 
         public async Task<LoginResponse> Authenticate(LoginRequest login)
         {
@@ -104,9 +115,8 @@ namespace H5_Webshop.Services
                 {
                     Id = user.UserId,
                     Email = user.Email,
-                    FirstName = user.FirstName,
-             
                     Password = user.Password,
+                    FirstName = user.FirstName,
                     Role = user.Role,
                     Token = _jwtUtils.GenerateJwtToken(user)
                 };
@@ -208,13 +218,15 @@ namespace H5_Webshop.Services
                 Telephone = gstUser.Telephone,
                 Email = gstUser.Email,
                 Password = "No Need",
-                Role = Helpers.Role.Member// force all users created through Register, to Role.User
+                Role = Helpers.Role.Guest// force all users created through Register, to Role.User
             };
 
             user = await _userRepository.Create(user);
 
             return MapGuestToGuestResponse(user);
         }
+
+       
     }
     
 }

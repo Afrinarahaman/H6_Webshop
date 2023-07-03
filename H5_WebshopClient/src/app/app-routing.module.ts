@@ -7,6 +7,9 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { GuestComponent } from './guest/guest.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
+
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent },
@@ -16,6 +19,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'guest', component: GuestComponent },
+  { path: 'checkOut', component: CheckOutComponent },
+  { path: 'thankyou', component:ThankyouComponent}
 
 ];
 

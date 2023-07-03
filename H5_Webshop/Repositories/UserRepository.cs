@@ -14,6 +14,7 @@ namespace H5_Webshop.Repositories
         Task<User> Create(User user);
         Task<User> GetByEmail(string email);
         Task<User> GetById(int userId);
+        Task<User> GetIdByUserName(string user_Name);
         Task<User> Update(int userId, User user);
         Task<User> Delete(int userId);
     }
@@ -50,7 +51,10 @@ namespace H5_Webshop.Repositories
         {
             return await _context.User.FirstOrDefaultAsync(u => u.UserId == user_Id);
         }
-
+        public async Task<User> GetIdByUserName(string user_Name)
+        {
+            return await _context.User.FirstOrDefaultAsync(u => u.FirstName == user_Name);
+        }
         //This method will get one specific user info whoose email has been given 
         public async Task<User> GetByEmail(string Email)
         {

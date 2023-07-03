@@ -6,8 +6,8 @@
   <Comment CommentText="Makes">
     <Position X="6.608" Y="3.758" Height="0.291" Width="0.7" />
   </Comment>
-  <Comment CommentText="Belong to">
-    <Position X="8.042" Y="1.225" Height="0.416" Width="0.967" />
+  <Comment CommentText="Has">
+    <Position X="8.017" Y="0.733" Height="0.324" Width="0.7" />
   </Comment>
   <Class Name="H5_Webshop.DTOs.Entities.Category">
     <Position X="3.5" Y="1" Width="1.5" />

@@ -1,8 +1,10 @@
 ﻿
 
 
+using Castle.Core.Resource;
 using H5_Webshop.Authorization;
 using H5_Webshop.Helpers;
+using System.Diagnostics.Eventing.Reader;
 
 namespace H5_Webshop.Controllers
 {
@@ -116,8 +118,9 @@ namespace H5_Webshop.Controllers
             }
         }
 
-
+        /*
         [Authorize(Role.Administrator)]
+        [AllowAnonymous]
         [HttpGet("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -137,26 +140,52 @@ namespace H5_Webshop.Controllers
                 {
                     return NotFound();
                 }
-
                 return Ok(user);
 
-                UserResponse currentUser = (UserResponse)HttpContext.Items["User"];
-
-                if (userId != currentUser.Id && currentUser.Role != Role.Administrator)
-                {
-                    return Unauthorized(new { message = "Unauthorized" });      // only admins can access other user records
-                }
+               
             }
             catch (Exception ex)
             {
                 return Problem(ex.Message);
             }      
 
+        }*/
+        
+        [AllowAnonymous]
+        [HttpGet("{userName}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+
+        public async Task<IActionResult> GetIdByUserName([FromRoute] string userName)
+        {
+
+            try
+            {
+
+                UserResponse user = await _userService.GetIdByUserName(userName);
+                
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                return Ok(user);
+
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+
         }
 
         //update
-      //  [AllowAnonymous]
-       
+        //  [AllowAnonymous]
+
         [Authorize(Role.Member, Role.Administrator)]
         [HttpPut("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
