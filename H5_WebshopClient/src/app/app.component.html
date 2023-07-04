@@ -11,6 +11,36 @@
     
 </li>
 <a class="navbar-brand" href="/frontpage"> <img class="logo rounded-circle" src="assets/image/logo3.png"></a>
+
+<li class="nav-item" *ngIf="this.x === 0">
+  <a  routerLink="/admin" routerLinkActive="active-link w3-green"> Admin Panel</a>
+</li>
+<li class="nav-item" *ngIf="currentUser == null">
+  <a  routerLink="/register"  routerLinkActive="active-link w3-green">Register</a>
+</li>
+<li class="nav-item" *ngIf="currentUser == null">
+  <a  routerLink="/login" routerLinkActive="active-link w3-green">Login</a>
+</li>
+
+<li style="display:inline-block" *ngIf="currentUser != null" class="nav-item">
+  <a routerLinkActive="active-link w3-green" ><span
+    class="glyphicon glyphicon-log-out">&nbsp;</span>{{currentUser.firstName}}</a>
+  <ul>                     
+      <li style="display:inline-block" *ngIf="currentUser != null" class="nav-item">
+          <a routerLink="/login" (click)="logout()"><span
+                  class="glyphicon glyphicon-log-out"></span>Logout</a>
+      </li>
+
+      <li style="display:inline-block" class="nav-item" *ngIf="currentUser != null">
+          <a  routerLink="/customerpanel"> <span class="glyphicon glyphicon-cog"></span>Profile</a>
+      </li>
+   
+  </ul>
+
+</li>
+
+
+<!--
 <li class="nav-item">
   <a routerLink="/register" routerLinkActive="active-link w3-green" *ngIf="currentUser == null">Register</a>
 </li>
@@ -25,6 +55,7 @@
 <li class="nav-item">
   <a routerLink="/login" routerLinkActive="active-link w3-green" *ngIf="currentUser == null">Login</a>
 </li>
+-->
 <div class="form-group">
   <input type="text" class="form-control"  placeholder="productTitle">
 </div>

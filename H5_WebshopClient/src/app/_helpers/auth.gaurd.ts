@@ -11,10 +11,10 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentCustomer = this.authService.currentUserValue;
-    if (currentCustomer) {
+    const currentUser = this.authService.currentUserValue;
+    if (currentUser?.role == 1) {
       // send the customer to login page, if requested endpoint has roles which customer does not have
-      if (route.data['roles'] && route.data['roles'].indexOf(currentCustomer.role) === -1)  {
+      if (route.data['roles'] && route.data['roles'].indexOf(currentUser.role) === -1)  {
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
         return false;
       }

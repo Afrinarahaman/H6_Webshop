@@ -9,7 +9,7 @@ export interface User {
     lastName: string;
     address: string;
     telephone: string;
-    role?: Role;
+    role: Role;
     token?: string;
   }
   

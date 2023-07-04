@@ -15,6 +15,8 @@ import { GuestComponent } from './guest/guest.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 
+import { AdministratorComponent } from './_admin/administrator/administrator.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
     LoginComponent,
     RegisterComponent,
     GuestComponent, 
-    CheckOutComponent, ThankyouComponent  
+    CheckOutComponent, ThankyouComponent,  AdministratorComponent  
   ],
   imports: [
     BrowserModule,

@@ -152,20 +152,20 @@ namespace H5_Webshop.Controllers
         }*/
         
         [AllowAnonymous]
-        [HttpGet("{userName}")]
+        [HttpGet("{email}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 
-        public async Task<IActionResult> GetIdByUserName([FromRoute] string userName)
+        public async Task<IActionResult> GetIdByUserName([FromRoute] string email)
         {
 
             try
             {
 
-                UserResponse user = await _userService.GetIdByUserName(userName);
+                UserResponse user = await _userService.GetIdByEmail(email);
                 
 
                 if (user == null)

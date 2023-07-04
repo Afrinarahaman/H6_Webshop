@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { GuestComponent } from './guest/guest.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import { AdministratorComponent } from './_admin/administrator/administrator.component';
+import { AuthGuard } from './_helpers/auth.gaurd';
 
 
 const routes: Routes = [
@@ -20,7 +22,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'guest', component: GuestComponent },
   { path: 'checkOut', component: CheckOutComponent },
-  { path: 'thankyou', component:ThankyouComponent}
+  { path: 'thankyou', component:ThankyouComponent},
+  {path: 'admin', component: AdministratorComponent, canActivate: [AuthGuard] },
 
 ];
 

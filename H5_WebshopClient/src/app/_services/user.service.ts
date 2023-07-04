@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,16 @@ export class UserService {
     private http: HttpClient
   ) { }
 
+  public getRole: BehaviorSubject<number> = new BehaviorSubject(0);
+  public getRole$: Observable<number> = this.getRole.asObservable();
+
+
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl)
+  }
+
+  getRole_(roleNr: number) {
+    this.getRole.next(roleNr)
   }
   addUser(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl1, user, this.httpOptions);

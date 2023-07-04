@@ -10,7 +10,7 @@ namespace H5_Webshop.Services
         Task<List<UserResponse>> GetAll();
         // Task<List<UserResponse>> GetAdmins();
         Task<UserResponse> GetById(int UserId);
-        Task<UserResponse> GetIdByUserName(string user_Name);
+        Task<UserResponse> GetIdByEmail(string email);
         Task<LoginResponse> Authenticate(LoginRequest login);
         Task<UserResponse> Register(UserRequest newUser);
         Task<GuestResponse> Register_Guest(GuestRequest newUser);
@@ -88,9 +88,9 @@ namespace H5_Webshop.Services
             }
             return null;
         }
-        public async Task<UserResponse> GetIdByUserName(string user_Name)
+        public async Task<UserResponse> GetIdByEmail(string email)
         {
-            User User = await _userRepository.GetIdByUserName(user_Name);
+            User User = await _userRepository.GetByEmail(email);
 
             if (User != null)
             {

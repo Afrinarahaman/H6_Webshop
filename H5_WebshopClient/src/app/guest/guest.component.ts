@@ -31,7 +31,7 @@ export class GuestComponent implements OnInit {
   }
 
   newUser(): User {
-    return { id: 0, email: '', password: '', firstName: '', lastName: '', address: '', telephone: ''};
+    return { id: 0, email: '', password: '', firstName: '', lastName: '', address: '', telephone: '', role: 2};
   }
 
   getUsers(): void {
